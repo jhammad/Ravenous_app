@@ -13,6 +13,7 @@ class SearchBar extends React.Component {
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleSortByChange = this.handleSortByChange.bind(this);
         this.sortByOptions = {
             "Best Match": "best_match",
             "Highest Rated": "rating",
@@ -69,13 +70,11 @@ class SearchBar extends React.Component {
                     <input onChange = {this.handleLocationChange}  placeholder="Where?" />
                 </div>
                 <div className="SearchBar-submit">
-                    {/* needs to be a real link */}
-                    <a onClick = {this.handleSearch} href="">Let's Go</a>
+                    <a onClick = {this.handleSearch}>Let's Go</a>
                 </div>
             </div>
         );
     }
 }
-
 export default SearchBar;
 

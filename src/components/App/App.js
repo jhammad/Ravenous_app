@@ -10,25 +10,27 @@ class App extends React.Component {
   constructor(props){
     super(props);  
     this.state = {
-      // the empty array will be filled with objects from the Yelp API
+      // businesses is an empty array of objects that will be populated by the Yelp API
       businesses: []
     };
     // We need  to bind the searchYelp method to the App component's this value
     this.searchYelp = this.searchYelp.bind(this);
   }
+    // searchYelp will be passed to the SearchBar component as a prop
     searchYelp(term, location, sortBy) {
+      // Yelp.search is a promise that will return a list of businesses
       Yelp.search(term, location, sortBy).then(businesses => {
+        // we will set the state of the businesses property to the businesses array returned by the Yelp API
         this.setState({businesses: businesses});
       });
     }
-
     render(){
     return (
       <div className="App">
     <h1>ravenous</h1>
+       {/* searchbar will be passed the searchYelp method as a prop */}
       <SearchBar searchYelp = {this.searchYelp}/>
-      {/* this state businesses is an array of objects that we will pass to the
-      BusinessList component we used this.state because we are in the App component */}
+       {/* busineeslist will be passed the businesses array as a prop */}
       <BusinessList businesses = {this.state.businesses} />
     </div>    
     );

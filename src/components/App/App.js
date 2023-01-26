@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor(props){
     super(props);  
     this.state = {
+      // the empty array will be filled with objects from the Yelp API
       businesses: []
     };
     // We need  to bind the searchYelp method to the App component's this value
@@ -19,7 +20,6 @@ class App extends React.Component {
       Yelp.search(term, location, sortBy).then(businesses => {
         this.setState({businesses: businesses});
       });
-
     }
 
     render(){
@@ -27,6 +27,8 @@ class App extends React.Component {
       <div className="App">
     <h1>ravenous</h1>
       <SearchBar searchYelp = {this.searchYelp}/>
+      {/* this state businesses is an array of objects that we will pass to the
+      BusinessList component we used this.state because we are in the App component */}
       <BusinessList businesses = {this.state.businesses} />
     </div>    
     );

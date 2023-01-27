@@ -45,6 +45,13 @@ class SearchBar extends React.Component {
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
         event.preventDefault();
     }
+
+    // method to search jut with the enter
+    // handleKeyPress(event) {
+    //     if (event.key === 'Enter') {
+    //         this.handleSearch(event); 
+    //     }
+    // }
    
     renderSortByOptions() {
         return Object.keys(this.sortByOptions).map(sortByOption => {
@@ -70,7 +77,8 @@ class SearchBar extends React.Component {
                     <input onChange = {this.handleLocationChange}  placeholder="Where?" />
                 </div>
                 <div className="SearchBar-submit">
-                    <a onClick = {this.handleSearch}>Let's Go</a>
+                    {/* to Do find a way to activate search by enter not by clicking  */}
+                    <a onClick = {this.handleSearch} onKeyUp={this.handleKeyPress}>Let's Go</a>
                 </div>
             </div>
         );

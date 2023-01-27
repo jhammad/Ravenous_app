@@ -10,10 +10,10 @@ class Business extends React.Component {
             <div className="image-container">
             <img src={this.props.business.imageSrc} alt=''/>
             </div>
-            <h2>{this.props.business.name}</h2>
+            <h2><a classname="title-link" href={this.props.business.url}>{this.props.business.name}</a></h2>
             <div className="Business-information">
             <div className="Business-address">
-                <p>{this.props.business.address}</p>
+                <a href={`https://www.google.com/maps/place/${this.props.business.address}`} target="_blank"><p>{this.props.business.address}</p></a>
                 <p>{this.props.business.city}</p>
                 <p>{this.props.business.state} {this.props.business.zipCode}</p>
             </div>

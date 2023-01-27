@@ -17,7 +17,6 @@ const Yelp = {
                         // if the response is valid, we will return a new array of businesses
                         // mappping over the businesses array in the jsonResponse object
                         return jsonResponse.businesses.map(business => {
-                            console.log(business)
                             return {
                                 id: business.id,
                                 imageSrc: business.image_url,

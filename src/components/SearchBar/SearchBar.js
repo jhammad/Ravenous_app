@@ -13,6 +13,7 @@ class SearchBar extends React.Component {
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleKeypress = this.handleKeypress.bind(this);
         this.handleSortByChange = this.handleSortByChange.bind(this);
         this.sortByOptions = {
             "Best Match": "best_match",
@@ -41,18 +42,22 @@ class SearchBar extends React.Component {
         this.setState({ location: event.target.value});
     }
 
+    
+    // method to handle the search button click
     handleSearch(event) {
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
         event.preventDefault();
+        console.log("search button clicked")
     }
-
-    // method to search jut with the enter
-    // handleKeyPress(event) {
-    //     if (event.key === 'Enter') {
-    //         this.handleSearch(event); 
-    //     }
-    // }
-   
+    
+    // method to handle the enter key press
+    handleKeypress(event) {
+        if (event.keyCode === 13) { 
+            this.handleSearch(event);
+            console.log("enter pressed")
+           } 
+    };    
+    
     renderSortByOptions() {
         return Object.keys(this.sortByOptions).map(sortByOption => {
             let sortByOptionValue = this.sortByOptions[sortByOption];
@@ -77,8 +82,8 @@ class SearchBar extends React.Component {
                     <input onChange = {this.handleLocationChange}  placeholder="Where?" />
                 </div>
                 <div className="SearchBar-submit">
-                    {/* to Do find a way to activate search by enter not by clicking  */}
-                    <a onClick = {this.handleSearch} onKeyUp={this.handleKeyPress}>Let's Go</a>
+                     {/* the button can be clicked or enter can be pressed to search thanks to the two event handlers */}
+                    <button className="Search-button" onClick = {this.handleSearch} onKeyDown={this.handleKeypress} >Let's Go</button>
                 </div>
             </div>
         );
